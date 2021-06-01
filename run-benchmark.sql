@@ -1,4 +1,4 @@
-\i config.psql
+\timing on
 
 \echo *** BENCHMARK BETWEEN RELATIONAL AND JSONB DATABASE ***
 \echo *** RELATIONAL DATABASE WITHOUT INDEX ***
