@@ -1,27 +1,21 @@
-                                                         QUERY PLAN                                                          
------------------------------------------------------------------------------------------------------------------------------
- Gather  (cost=1000.00..30571.10 rows=1 width=22) (actual time=7.175..2057.149 rows=1 loops=1)
-   Workers Planned: 2
-   Workers Launched: 2
-   ->  Parallel Seq Scan on customers  (cost=0.00..29571.00 rows=1 width=22) (actual time=1329.529..2009.397 rows=0 loops=3)
-         Filter: (((firstname)::text = 'VKUUXF'::text) AND ((lastname)::text = 'ITHOMQJNYX'::text))
-         Rows Removed by Filter: 333333
- Planning Time: 1.467 ms
- Execution Time: 2057.175 ms
-(8 Zeilen)
+                                               QUERY PLAN                                               
+--------------------------------------------------------------------------------------------------------
+ Seq Scan on customers  (cost=0.00..2829.40 rows=1 width=246) (actual time=6.967..6.967 rows=0 loops=1)
+   Filter: (((firstname)::text = 'VKUUXF'::text) AND ((lastname)::text = 'ITHOMQJNYX'::text))
+   Rows Removed by Filter: 50000
+ Planning Time: 0.118 ms
+ Execution Time: 6.980 ms
+(5 Zeilen)
 
- firstname |  lastname  | gender | age 
------------+------------+--------+-----
- VKUUXF    | ITHOMQJNYX | M      |  55
-(1 Zeile)
+ firstname | lastname | gender | age 
+-----------+----------+--------+-----
+(0 Zeilen)
 
- firstname |  lastname  | gender | age 
------------+------------+--------+-----
- VKUUXF    | ITHOMQJNYX | M      |  55
-(1 Zeile)
+ firstname | lastname | gender | age 
+-----------+----------+--------+-----
+(0 Zeilen)
 
- firstname |  lastname  | gender | age 
------------+------------+--------+-----
- VKUUXF    | ITHOMQJNYX | M      |  55
-(1 Zeile)
+ firstname | lastname | gender | age 
+-----------+----------+--------+-----
+(0 Zeilen)
 

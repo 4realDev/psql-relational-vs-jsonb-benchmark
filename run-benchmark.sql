@@ -1,6 +1,6 @@
 \timing on
+\echo
 
-\echo *** BENCHMARK BETWEEN RELATIONAL AND JSONB DATABASE ***
 \echo *** RELATIONAL DATABASE WITHOUT INDEX ***
 \echo
 \echo
