@@ -3,9 +3,6 @@
 
 DROP TABLE IF EXISTS cache_fill_towns;
 
-DECLARE benchmark_table_count int;
-SET benchmark_table_count = SELECT COUNT(*) FROM CUSTOMERS;
-
 CREATE TABLE cache_fill_towns (
   id SERIAL UNIQUE NOT NULL,
   code VARCHAR(10) NOT NULL,
@@ -14,6 +11,7 @@ CREATE TABLE cache_fill_towns (
   department VARCHAR(4) NOT NULL
 );
 
+WITH tmp AS (SELECT COUNT(*) as customer_count FROM CUSTOMERS)
 insert into cache_fill_towns (
 	code, article, name, department
 )
@@ -22,7 +20,7 @@ select
 	md5(random()::text),
 	md5(random()::text),
 	left(md5(random()::text), 4)
-from generate_series(1, benchmark_table_count) s(i);
+from tmp, generate_series(1, customer_count) s(i);
 
 \echo
 \echo

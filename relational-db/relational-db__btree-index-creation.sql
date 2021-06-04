@@ -2,19 +2,19 @@
 \echo
 
 \echo DROP INDEX firstname_lastname_idx;
-DROP INDEX firstname_lastname_idx;
+DROP INDEX IF EXISTS firstname_lastname_idx;
 \echo
 
 \echo DROP INDEX state_idx;
-DROP INDEX state_idx;
+DROP INDEX IF EXISTS state_idx;
 \echo
 
 \echo DROP INDEX age_above_fifthy_idx;
-DROP INDEX age_above_fifthy_idx;
+DROP INDEX IF EXISTS age_above_fifthy_idx;
 \echo
 
 \echo DROP INDEX age_above_fifthy_gender_male_idx;
-DROP INDEX age_above_fifthy_gender_male_idx;
+DROP INDEX IF EXISTS age_above_fifthy_gender_male_idx;
 
 \echo
 

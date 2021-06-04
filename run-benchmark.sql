@@ -5,7 +5,7 @@
 \echo *** SETUP ***
 \echo
 
-\i create-cache-fill-tables/create-cache-fill-table.sql
+\i create-cache-fill-table.sql
 \i convert-relational-db-into-jsonb-db.sql
 \timing on
 \echo

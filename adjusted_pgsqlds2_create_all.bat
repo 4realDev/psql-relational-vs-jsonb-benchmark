@@ -1,3 +1,7 @@
+:: Script to start the generic database generation directly with the benchmark in the ds2 tool on WINDOWS
+:: Copy paste this script into the same directory where the pgsqlds2_create_all.sh script from the ds2 GitHub Repo is
+:: Execute the adjusted_pgsqlds2_create_all.bat script instead of the pgsqlds2_create_all.sh script
+
 set connection=-h localhost -p 5432
 set dbuser=ds2
 set db=ds2

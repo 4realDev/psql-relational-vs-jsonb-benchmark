@@ -2,11 +2,11 @@
 \echo
 
 \echo DROP INDEX personal_gin_idx;
-DROP INDEX personal_gin_idx;
+DROP INDEX IF EXISTS personal_gin_idx;
 \echo
 
 \echo DROP INDEX location_gin_idx;
-DROP INDEX location_gin_idx;
+DROP INDEX IF EXISTS location_gin_idx;
 
 \echo
 
