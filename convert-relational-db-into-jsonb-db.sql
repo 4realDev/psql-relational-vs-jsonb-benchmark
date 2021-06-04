@@ -1,7 +1,9 @@
-\echo *** Convert relational-db (customers) into jsonb-db (customers_jsonb) ***
+\echo *** CONVERT RELATIONAL-DB (CUSTOMERS) INTO JSONB-DB (CUSTOMERS_JSONB) ***
 \echo
 
-CREATE table customers_jsonb as(
+DROP TABLE IF EXISTS CUSTOMERS_JSONB;
+
+CREATE table CUSTOMERS_JSONB as(
     SELECT
         customerid,
         jsonb_build_object('personal',
@@ -37,6 +39,6 @@ CREATE table customers_jsonb as(
             'password', password
         ) as "login"
         
-    FROM customers
+    FROM CUSTOMERS
 );
 

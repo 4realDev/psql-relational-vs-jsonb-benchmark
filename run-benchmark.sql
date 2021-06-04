@@ -1,4 +1,20 @@
+\echo
+\echo ______________________________________________________________________
+\echo
+
+\echo *** SETUP ***
+\echo
+
+\i create-cache-fill-tables/create-cache-fill-table.sql
+\i convert-relational-db-into-jsonb-db.sql
 \timing on
+\echo
+
+\echo
+\echo ______________________________________________________________________
+\echo
+
+\echo *** BENCHMARK BETWEEN RELATIONAL AND JSONB DATABASE ***
 \echo
 
 \echo *** RELATIONAL DATABASE WITHOUT INDEX ***
@@ -130,3 +146,6 @@
 -- \i jsonb-db/jsonb-db__insert.sql
 -- \i jsonb-db/jsonb-db__delete.sql
 -- \i jsonb-db/jsonb-db__update.sql
+
+\echo
+\echo ______________________________________________________________________

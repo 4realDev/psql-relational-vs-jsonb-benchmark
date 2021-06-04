@@ -4,7 +4,7 @@
 \echo *** SETUP ***
 \echo
 
-\i create-cache-fill-tables/create-cache-fill-table-50k.sql
+\i create-cache-fill-tables/create-cache-fill-table-1m.sql
 \i convert-relational-db-into-jsonb-db.sql
 
 \echo

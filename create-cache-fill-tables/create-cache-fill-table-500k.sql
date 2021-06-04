@@ -11,15 +11,15 @@ CREATE TABLE cache_fill_towns (
   department VARCHAR(4) NOT NULL
 );
 
-insert into cache_fill_towns (
+INSERT INTO cache_fill_towns (
 	code, article, name, department
 )
-select
+SELECT
 	left(md5(i::text), 10),
 	md5(random()::text),
 	md5(random()::text),
 	left(md5(random()::text), 4)
-from generate_series(1, 500000) s(i);
+FROM generate_series(1, 500000) s(i);
 
 \echo
 \echo

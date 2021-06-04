@@ -3,8 +3,9 @@
 
 \o ignore.txt
 
-\echo > overriding cache <
+\echo overriding cache
 SELECT * FROM cache_fill_towns;
+
 \echo
 \echo
 
