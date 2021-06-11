@@ -33,13 +33,14 @@ psql %connection% -U %dbuser% -d %db% < pgsqlds2_reset_seq.sql
 psql %connection% -U %dbuser% -d %db% < pgsqlds2_create_user.sql
 psql %connection% -U %dbuser% -d %db% -c "VACUUM ANALYZE;"
 
-
+@echo off
                                                                                                     
 :: Get path to the (cloned) benchmark repository "psql-relational-vs-jsonb-benchmark"
 set benchmarkRepoPath=C:\psql-relational-vs-jsonb-benchmark
-set /p benchmarkRepoPath=Enter path of the benchmark GitHub repository "psql-relational-vs-jsonb-benchmark" or press [ENTER] for default inside C:\ [%benchmarkRepoPath%]:
+echo Enter path of the benchmark GitHub repository "psql-relational-vs-jsonb-benchmark"
+set /p benchmarkRepoPath=or press [ENTER] for default inside C:\ [%benchmarkRepoPath%]:
 echo %benchmarkRepoPath%
-cd %benchmarkRepoPath%
+cd /d %benchmarkRepoPath%
 
 :: Run the benchmark on the generated database
 psql %connection% -U %dbuser% -d %db% < run-benchmark.sql

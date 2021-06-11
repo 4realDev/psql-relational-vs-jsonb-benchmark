@@ -18,6 +18,14 @@ CREATE INDEX personal_gin_idx ON customers_jsonb USING GIN (personal jsonb_path_
 CREATE INDEX location_gin_idx ON customers_jsonb USING GIN (location jsonb_path_ops);
 
 \echo
+\echo *** INDEX SIZE ***
+\echo
+
+SELECT pg_size_pretty(pg_table_size('personal_gin_idx')) as personal_gin_idx;
+\echo
+SELECT pg_size_pretty(pg_table_size('location_gin_idx')) as location_gin_idx;
+
+\echo
 \echo
 
 

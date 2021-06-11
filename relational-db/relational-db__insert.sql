@@ -32,7 +32,7 @@
 \echo     substr(md5(random()::text), 1, 1)
 \echo FROM
 \echo     tmp,
-\echo     generate_series(1, 2500000) AS g;
+\echo     generate_series(1, max) AS g;
 
 
 INSERT INTO customers(
@@ -84,7 +84,7 @@ INSERT INTO customers(
 		random()::integer * 100,	-- age smallint max = 100 
 		random()::integer * 100000,	-- income int max = 100000
 		substr(md5(random()::text), 1, 1)	-- gender varchar(1) with 2 DISTINCT values (M,F)
-FROM tmp, generate_series(1,2500000) as g;
+FROM tmp, generate_series(1,max) as g;
 
 VACUUM ANALYZE
 

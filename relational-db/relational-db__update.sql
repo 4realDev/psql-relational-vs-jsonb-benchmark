@@ -1,3 +1,5 @@
+\echo
+\echo
 \echo *** UPDATE RECORDS FROM THE RELATIONAL DB WITH B-TREE INDEX ***
 \echo 
 

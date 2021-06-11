@@ -137,15 +137,15 @@
 \i jsonb-db/jsonb-db__V-disjunction-query.sql
 \o
 
--- *** INSERT, DELETE AND UPDATE RECORDS IN RELATIONAL DB WITH B-TREE INDEX ***
--- \i relational-db/relational-db__insert.sql
--- \i relational-db/relational-db__delete.sql
--- \i relational-db/relational-db__update.sql
+\echo *** INSERT, DELETE AND UPDATE RECORDS IN RELATIONAL DB WITH B-TREE INDEX ***
+\i relational-db/relational-db__insert.sql
+\i relational-db/relational-db__delete.sql
+\i relational-db/relational-db__update.sql
 
--- *** INSERT, DELETE AND UPDATE RECORDS IN JSONB DB WITH GIN INDEX ***
--- \i jsonb-db/jsonb-db__insert.sql
--- \i jsonb-db/jsonb-db__delete.sql
--- \i jsonb-db/jsonb-db__update.sql
+\echo *** INSERT, DELETE AND UPDATE RECORDS IN JSONB DB WITH GIN INDEX ***
+\i jsonb-db/jsonb-db__insert.sql
+\i jsonb-db/jsonb-db__delete.sql
+\i jsonb-db/jsonb-db__update.sql
 
 \echo
 \echo ______________________________________________________________________

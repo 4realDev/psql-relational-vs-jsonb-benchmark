@@ -1,8 +1,15 @@
+\echo
+\echo
 \echo *** DELETE RECORDS FROM THE RELATIONAL DB WITH B-TREE INDEX ***
 \echo
 
-\echo DELETE FROM customers WHERE customerid > 1000000;
-DELETE FROM customers WHERE customerid > 1000000;
+\echo DELETE
+\echo FROM CUSTOMERS
+\echo WHERE customerid > (SELECT ((COUNT(*)/2)) FROM CUSTOMERS);
+
+DELETE
+FROM CUSTOMERS
+WHERE customerid > (SELECT ((COUNT(*)/2)) FROM CUSTOMERS);
 
 VACUUM ANALYZE
 
