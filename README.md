@@ -592,7 +592,7 @@ CREATE table CUSTOMERS_JSONB as(
 ```
  
 #### JSONB OBJECT STRUCTURE
-``` sql
+``` text
 customerid,
 personal: {
 
@@ -820,9 +820,7 @@ Therefore, the GIN index needs more build time and has a larger index size.
 |**Delete**|-|-|69.074|77.850|
 |**Update**|-|-|84.290|99.086|
 
-<p align="center">
-  <img src="images/query_result_50k.png" width=600>
-</p>
+<img src="images/query_result_50k.png" width=600>
 
 ### ***100.000 RECORDS***
 
@@ -839,10 +837,8 @@ Therefore, the GIN index needs more build time and has a larger index size.
 |**Delete**|-|-|173.489|422.251|
 |**Update**|-|-|172.176|197.837|
 
-<p align="center">
-  <img src="images/query_result_100k.png" width=600>
-</p>
-
+<img src="images/query_result_100k.png" width=600>
+ 
 ### ***500.000 RECORDS***
 
 |<p>***Databases***</p><p>***Criteria***</p>|<p>Relational DB</p><p>without B-TREE</p>|<p>JSONB DB</p><p>without GIN</p>|<p>Relational DB</p><p>with B-TREE</p>|<p>JSONB DB</p><p>with GIN</p>|
@@ -858,9 +854,7 @@ Therefore, the GIN index needs more build time and has a larger index size.
 |**Delete**|-|-|2167.978|13837.663|
 |**Update**|-|-|2639.710|4891.530|
 
-<p align="center">
-  <img src="images/query_result_500k.png" width=600>
-</p>
+<img src="images/query_result_500k.png" width=600>
 
 ### ***1.000.000 RECORDS***
 
@@ -877,9 +871,7 @@ Therefore, the GIN index needs more build time and has a larger index size.
 |**Delete**|-|-|11390,526|27597,459|
 |**Update**|-|-|4863,120|24153,605|
 
-<p align="center">
-  <img src="images/query_result_1m.png" width=600>
-</p>
+<img src="images/query_result_1m.png" width=600>
 
 ### ***2.000.000 RECORDS***
 
@@ -896,20 +888,15 @@ Therefore, the GIN index needs more build time and has a larger index size.
 |**Delete**|-|-|26928,618 (00:26,929)|81473,774 (01:21,474)|
 |**Update**|-|-|13056,619|55807,895 |
 
-<p align="center">
-  <img src="images/query_result_2m.png" width=600>
-</p>
+<img src="images/query_result_2m.png" width=600>
 
 ### ***INDEX BUILD TIME AND INDEX SIZE***
 The GIN index takes about 5 times longer to create than the B-tree and is about 10 times larger. However, as already mentioned in the disclaimer, this was obvious because the GIN index references the entire location attributes instead only the state like the B-Tree Index. 
 
-<p align="center">
-  <img src="images/index_size_results.png" width=600>
-</p>
+<img src="images/index_size_results.png" width=600>
 
-<p align="center">
-  <img src="images/index_build_time_results.png" width=600>
-</p>
+<img src="images/index_build_time_results.png" width=600>
+
 
 ---
 ## **CONCLUSION**
