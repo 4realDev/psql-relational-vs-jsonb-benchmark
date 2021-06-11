@@ -25,7 +25,7 @@ To test these queries and operations the benchmark uses the “Dell DVD Store Da
 
 ## REQUIREMENTS
 -	Windows OS to run the .bat files
--	Installation of the “Dell DVD Store Database Test Suite” (https://linux.dell.com/dvdstore/) for the generic database generation  see chapter CONFIGURATION
+-	Installation of the “Dell DVD Store Database Test Suite” (https://linux.dell.com/dvdstore/) for the generic database generation, see chapter CONFIGURATION
 
 ## INSTALLATION
 -	Navigate into your C:\ drive:
@@ -45,19 +45,21 @@ The result inside the ds2 folder should look like this:
 
 -	Use the Install_DVDStore.pl script in the root directory to generate the CSV files for the five ds2 benchmark databases with the size of:
 
-- **Database size	Records inside Customers table**
+### **Database size	Records inside Customers table**
+
 | 25 MB	    | 50 K      |
 |:---------:|:---------:|
 | **50 MB**	| **100 K** |
 | **250 MB**| **500 K** |
 | **500 MB**| **1M**    |
-| **1 GB**	| **2M**    |
+| **1 GB**	 | **2M**    |
 
 - To start the generic database generation with the ds2 tool, we need execute the pgsqlds2_create_all.sh shell script in the ds2\pgsqlds2 directory of the ds21 repository. But since the benchmark is on WINDOWS, and the repository only provides a shell script for LINUX, this would not work. Therefore, small adjustments were made on the script, to convert it into a batch (.bat) script. This batch script can be found in the root directory of this repository under the name adjusted_pgsqlds2_create_all.bat. Copy paste this script into the same directory where the pgsqlds2_create_all.sh script is and execute the adjusted_pgsqlds2_create_all.bat script instead of the pgsqlds2_create_all.sh script.
 
 - Before execution make sure that no one uses the databases and all the connections to the databases are closed.
 
-**The adjustments made to the pgsqlds2_create_all.sh to convert it into the adjusted_pgsqlds2_create_all.bat are the following:**
+### **The adjustments made to the pgsqlds2_create_all.sh to convert it into the adjusted_pgsqlds2_create_all.bat are the following:**
+
 1. Adjust the shell syntax to the batch script to make it work on WINDOWS
 2. Commenting out the pgsqlds2_create_ind.sql file, which is responsible for the index creation in the generated benchmark database benchmark, as the benchmark first tests the generated database without any indexes, and only then creates its OWN indexes (B-Tree and GIN), with which the database is tested again.
 3.	Enter the path, where you cloned this repository and directly run the benchmark (execute the run-benchmark.sql) on the generated database, after it has generated.
@@ -153,7 +155,6 @@ Creates the CUSTOMERS_JSONB table by converting the CUSTOMERS table with the con
 
 ### results folder in jsonb-db and relational-db
 *Stores the EXPLAIN ANALYZE output of the query planner with the results from the queries (I-V) and the insert, delete and update operation.*
-
  
 ## QUERIES
 The EXPLAIN ANALYZE results of the Query Planner for the queries with and without an index for both the tables, json and relational, will be generated dynamically every time the benchmark is executed.
@@ -161,8 +162,6 @@ The EXPLAIN ANALYZE results of the Query Planner for the queries with and withou
 **These results are saved inside .txt files in the folders:**
 -	psql-relational-vs-jsonb-benchmark\relational-db\results for the Queries on the relational CUSTOMERS table
 -	psql-relational-vs-jsonb-benchmark\jsonb-db\results for the Queries on the jsonb CUSTOMERS_jSONB table.
-
-      
 
 **Attention: These results will be overwritten every time the benchmark is executed.**
 
@@ -590,7 +589,6 @@ CREATE table CUSTOMERS_JSONB as(
     FROM CUSTOMERS
 );
 ```
- 
 #### JSONB OBJECT STRUCTURE
 ``` text
 customerid,
