@@ -898,7 +898,7 @@ The GIN index takes about 5 times longer to create than the B-tree and is about 
 
 ---
 ## **CONCLUSION**
-Regardless of the table size, the benchmark shows that the JSONB table performs significantly worse than the relational table in all queries, as well as in the index build time and index size. Through the analysis of the query planner, it is also noticeable that the indexes were not applied in the range queries for both the JSONB table and the relational table. Another noticeable results of the benchmark is that in the disjunction query the B-tree indexes were not applied to the relational table, while the GIN index in the JSONB table even significantly worsened the search time. The reasons for this are still unclear. 
+Regardless of the table size, the benchmark shows that the JSONB table performs significantly worse than the relational table in all queries, as well as in the index build time and index size. Through the analysis of the query planner, it is also noticeable that the indexes were not applied in the range queries for both the JSONB table and the relational table. Another noticeable result of the benchmark is that in the disjunction query the B-tree indexes were not applied to the relational table, while the GIN index in the JSONB table even significantly worsened the search time. 
 
 In summary, the JSONB table performed worse than the relational table in all comparison points.
 Therefore, based on the results from the benchmark, a JSONB table in combination with a standard GIN index should only be used, if the data type / the data do not allow it otherwise.
