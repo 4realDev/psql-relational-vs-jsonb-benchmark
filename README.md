@@ -491,11 +491,14 @@ Seq Scan on customers  (cost=0.00..37490.00 rows=505621 width=16) (actual time=0
 
 **Query Plan with B-Tree Index:**
 ``` text
-Seq Scan on customers  (cost=0.00..37490.00 rows=505621 width=16) (actual time=0.018..415.350 rows=506618 loops=1)
-   Filter: ((age = 26) OR ((gender)::text = 'F'::text))
-   Rows Removed by Filter: 493382
- Planning Time: 0.125 ms
- Execution Time: 427.781 ms
+Bitmap Heap Scan on customers  (cost=4404.81..34532.86 rows=509203 width=16) (actual time=30.487..271.310 rows=506618 loops=1)
+   Recheck Cond: ((age = 26) OR ((gender)::text = 'F'::text))
+   Heap Blocks: exact=22490
+   ->  Bitmap Index Scan on age_above_twenty_six_or_gender_female_idx  
+       (cost=0.00..4277.51 rows=509203 width=0) 
+       (actual time=27.613..27.614 rows=506618 loops=1)
+ Planning Time: 0.149 ms
+ Execution Time: 283.255 ms
 ```
 
 #### jsonb-db__V-disjunction-query.sql:
@@ -589,6 +592,43 @@ CREATE table CUSTOMERS_JSONB as(
     FROM CUSTOMERS
 );
 ```
+
+---
+#### RELATIONAL DATABASE STRUCTURE 
+```text
+CUSTOMERID: [PK] integer 
+
+FIRSTNAME: varchar(50)  
+LASTNAME: varchar(50)
+
+AGE: smallint
+INCOME: integer 
+GENDER: varchart(1)
+
+EMAIL: varchar(50)  
+PHONE: varchar(50) 
+
+ADDRESS1: varchar(50)   
+ADDRESS2: varchar(50)  
+CITY: varchar(50)  
+STATE: varchar(50)  
+ZIP: varchar(9)   
+COUNTRY: varchar(50)  
+REGION: smallint
+
+CREDITCARDTYPE: integer  
+CREDITCARD: varchar(50)  
+CREDITEXPIRATION: varchar(50)  
+
+USERNAME: varchar(50)  
+PASSWORD: varchar(50)  
+login: {
+  USERNAME, 
+  PASSWORD
+}
+```
+
+---
 #### JSONB OBJECT STRUCTURE
 ``` text
 customerid,
@@ -634,26 +674,23 @@ login: {
 ---
 ### INDEX CREATION
 ``` sql
-CREATE B-TREE INDEX FOR RELATIONAL DATABASE
+#### CREATE B-TREE INDEX FOR RELATIONAL DATABASE
 CREATE INDEX firstname_lastname_idx ON customers USING btree (firstname, lastname);
+
 CREATE INDEX state_idx ON customers USING btree(state); // Index used for comparing
-CREATE INDEX age_below_twenty_six_idx ON customers USING btree(age) WHERE age >= 26;
-CREATE INDEX age_below_twenty_six_gender_female_idx ON customers USING btree(age, gender) 
+
+CREATE INDEX age_above_twenty_six_idx ON customers USING btree(age) WHERE age >= 26;
+
+CREATE INDEX age_above_twenty_six_or_gender_female_idx ON customers USING btree(age,gender)
+    WHERE age = 26 OR gender='F';
+
+CREATE INDEX age_above_twenty_six_gender_female_idx ON customers USING btree(age, gender) 
     WHERE age = 26 AND gender='F';
 
-SELECT pg_size_pretty(pg_table_size('firstname_lastname_idx')) as firstname_lastname_idx;
-SELECT pg_size_pretty(pg_table_size('state_idx')) as state_idx;
-SELECT pg_size_pretty(pg_table_size('age_below_twenty_six_idx')) 
-    as age_below_twenty_six_idx;
-SELECT pg_size_pretty(pg_table_size('age_below_twenty_six_gender_female_idx')) 
-    as age_below_twenty_six_gender_female_idx;
-
-CREATE GIN INDEX FOR JSONB DATABASE
+#### CREATE GIN INDEX FOR JSONB DATABASE
 CREATE INDEX personal_gin_idx ON customers_jsonb USING GIN (personal jsonb_path_ops);
-CREATE INDEX location_gin_idx ON customers_jsonb USING GIN (location jsonb_path_ops);
 
-SELECT pg_size_pretty(pg_table_size('personal_gin_idx')) as personal_gin_idx;
-SELECT pg_size_pretty(pg_table_size('location_gin_idx')) as location_gin_idx;
+CREATE INDEX location_gin_idx ON customers_jsonb USING GIN (location jsonb_path_ops);
 ```
 
 ---
